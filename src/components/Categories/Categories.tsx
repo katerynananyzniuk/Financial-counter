@@ -1,13 +1,7 @@
 import {useState} from 'react'
 import {Category} from '../Category/Category'
 import styles from '../Categories/Categories.module.scss'
-
-interface ICategory {
-  id: number,
-  name: string,
-  title: string,
-  total: number,
-}
+import {ICategory} from '../../types'
 
 const initialValue = [
   { id: 1, name: 'Home', title: 'H', total: 0 },

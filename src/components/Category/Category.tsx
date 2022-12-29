@@ -3,6 +3,7 @@ import { Button, Input, Space } from 'antd'
 import { PlusOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import styles from '../Category/Category.module.scss'
 import {ICategory} from '../../types'
+import {Modal} from '../UI/Modal/Modal'
 
 interface CategoryProps {
   category: ICategory,
@@ -52,6 +53,7 @@ function Category({category, addSum}: CategoryProps) {
           shape='circle'
           icon={<PlusOutlined />} 
         />
+        <Modal category={category}/>
         {
           togglePayload
             ? (
