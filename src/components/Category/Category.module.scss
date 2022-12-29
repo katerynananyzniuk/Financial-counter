@@ -1,0 +1,18 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  position: relative;
+}
+
+.error {
+  color: red;
+  position: absolute;
+  left: 200px;
+  top: 8px;
+  z-index: 100;
+  margin: 0;
+  width: max-content;
+}
