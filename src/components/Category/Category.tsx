@@ -12,35 +12,48 @@ interface CategoryProps {
 }
 
 function Category({category, addSum}: CategoryProps) {
-  const [togglePayload, setTogglePayload] = useState(false)
+  // const [togglePayload, setTogglePayload] = useState(false)
+  const [onPayload, setOnPayload] = useState(false)
   const [payload, setPayload] = useState('')
   const [error, setError] = useState('')
 
-  function handleTogglePayload() {
-    setTogglePayload(prev => !prev)
+  // function handleTogglePayload() {
+  //   setTogglePayload(prev => !prev)
+  // }
+
+  function handleOnPayload() {
+    setOnPayload(prev => !prev)
   }
 
   function addPayload() {
-    if(payload.trim()) {
+    setOnPayload(true)
+    if (payload.trim()) {
       if (+payload) {
         setError('')
         addSum(category.id, payload)
         setPayload('')
-        return setTogglePayload(prev => !prev)
+        setOnPayload(prev => !prev)
+        // return setTogglePayload(prev => !prev)
       }
       else {
         setError('Should contain only numbers or number with "."')
         setPayload('')
-        setTogglePayload(false)
+        setOnPayload(true)
+        // setTogglePayload(false)
       }
     }
-    setTogglePayload(prev => !prev)
+    else {
+      setError('')
+      setOnPayload(false)
+    }
+    // setTogglePayload(prev => !prev)
   }
 
   function removePayload() {
     setError('')
     setPayload('')
-    setTogglePayload(prev => !prev)
+    setOnPayload(false)
+    // setTogglePayload(prev => !prev)
   }
 
   return (
@@ -48,16 +61,30 @@ function Category({category, addSum}: CategoryProps) {
       <Space>
         <p>{category.total}</p>
         <h3>{`Category ${category.title} | ${category.name}`}</h3>
+        
         <Button 
-          onClick={() => handleTogglePayload()}
+          // onMouseOver={() => handleTogglePayload()}
+          onClick={() => handleOnPayload()}
           type='default' 
           shape='circle'
           icon={<PlusOutlined />} 
         />
-        <Modal title='Operation'>
-          <Operation category={category}/>
+
+        <Modal 
+          title='Operation' 
+          onSubmit={addPayload} 
+          onQuit={removePayload}
+          isOpen={onPayload}
+        >
+          <Operation 
+            category={category} 
+            error={error}
+            payload={payload}
+            setPayload={setPayload}
+          />
         </Modal>
-        {
+
+        {/* {
           togglePayload
             ? (
               <Space className={styles.input}>
@@ -85,7 +112,7 @@ function Category({category, addSum}: CategoryProps) {
               </Space>
             )
           : null
-        }
+        } */}
       </Space>
     </div>
   )

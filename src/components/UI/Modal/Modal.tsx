@@ -2,19 +2,19 @@ import { useState } from 'react'
 import styles from '../Modal/Modal.module.scss'
 import { Button, Space } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 
 interface ModalProps {
   title: string,
-  children: React.ReactNode
+  children: React.ReactNode,
+  onSubmit: Function,
+  onQuit: Function,
+  isOpen: boolean
 }
 
-const Modal = ({title, children}: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-
+const Modal = ({title, children, onSubmit, onQuit, isOpen}: ModalProps) => {
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>{title}</button>
-
       { isOpen && (
         <div className={styles.modal}>
           <div className={styles.modalBody}>
@@ -24,13 +24,13 @@ const Modal = ({title, children}: ModalProps) => {
 
             <Space className={styles.input}>
               <Button 
-                onClick={() => {}}
+                onClick={() => onSubmit()}
                 type='default' 
                 shape='circle'
                 icon={<CheckOutlined />} 
               />
               <Button 
-                onClick={() => setIsOpen(false)}
+                onClick={() => onQuit()}
                 type='default' 
                 shape='circle'
                 icon={<CloseOutlined />} 
