@@ -1,39 +1,27 @@
 import { useState } from 'react'
 import styles from '../Modal/Modal.module.scss'
-import { ICategory } from '../../../types'
-import { Button, Input, Space } from 'antd'
-import { PlusOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons'
-const { TextArea } = Input
+import { Button, Space } from 'antd'
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 
 interface ModalProps {
-  category: ICategory,
+  title: string,
+  children: React.ReactNode
 }
 
-const Modal = ({category}: ModalProps) => {
+const Modal = ({title, children}: ModalProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Operation</button>
+      <button onClick={() => setIsOpen(true)}>{title}</button>
 
       { isOpen && (
         <div className={styles.modal}>
           <div className={styles.modalBody}>
-            <h2>Operation</h2>
-            <label htmlFor='operation'>Sum:&nbsp;</label>
-            <Input  
-              style={{ width: '100px' }}
-              id='operation'
-            />
-            <p>Category {category.title}</p>
-            <p>Category name: {category.name}</p>
-            <label htmlFor='comment'>Comment:&nbsp;</label>
-            <Input  
-              id='comment'
-              showCount 
-              maxLength={20}
-              className={styles.comment}
-            />
+            <h2>{title}</h2>
+
+            {children}
+
             <Space className={styles.input}>
               <Button 
                 onClick={() => {}}
