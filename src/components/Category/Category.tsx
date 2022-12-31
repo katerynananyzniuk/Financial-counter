@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Button, Input, Space } from 'antd'
-import { PlusOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { Button, Space } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 import styles from '../Category/Category.module.scss'
 import {ICategory} from '../../types'
 import {Modal} from '../UI/Modal/Modal'
 import {Operation} from '../Operation/Operation'
+import {RapidOperation} from '../RapidOperation/RapidOperation'
 
 interface CategoryProps {
   category: ICategory,
@@ -12,14 +13,18 @@ interface CategoryProps {
 }
 
 function Category({category, addSum}: CategoryProps) {
-  // const [togglePayload, setTogglePayload] = useState(false)
+  const [togglePayload, setTogglePayload] = useState(false)
   const [onPayload, setOnPayload] = useState(false)
   const [payload, setPayload] = useState('')
   const [error, setError] = useState('')
 
-  // function handleTogglePayload() {
-  //   setTogglePayload(prev => !prev)
-  // }
+  function handleOverPayload() {
+    setTogglePayload(true)
+  }
+
+  function handleOutPayload() {
+    setTogglePayload(false)
+  }
 
   function handleOnPayload() {
     setOnPayload(prev => !prev)
@@ -33,27 +38,27 @@ function Category({category, addSum}: CategoryProps) {
         addSum(category.id, payload)
         setPayload('')
         setOnPayload(prev => !prev)
-        // return setTogglePayload(prev => !prev)
+        return setTogglePayload(prev => !prev)
       }
       else {
         setError('Should contain only numbers or number with "."')
         setPayload('')
         setOnPayload(true)
-        // setTogglePayload(false)
+        setTogglePayload(false)
       }
     }
     else {
       setError('')
       setOnPayload(false)
     }
-    // setTogglePayload(prev => !prev)
+    setTogglePayload(prev => !prev)
   }
 
   function removePayload() {
     setError('')
     setPayload('')
     setOnPayload(false)
-    // setTogglePayload(prev => !prev)
+    setTogglePayload(prev => !prev)
   }
 
   return (
@@ -62,57 +67,45 @@ function Category({category, addSum}: CategoryProps) {
         <p>{category.total}</p>
         <h3>{`Category ${category.title} | ${category.name}`}</h3>
         
-        <Button 
-          // onMouseOver={() => handleTogglePayload()}
-          onClick={() => handleOnPayload()}
-          type='default' 
-          shape='circle'
-          icon={<PlusOutlined />} 
-        />
-
-        <Modal 
-          title='Operation' 
-          onSubmit={addPayload} 
-          onQuit={removePayload}
-          isOpen={onPayload}
+        <Space
+          onMouseOver={() => handleOverPayload()}
+          onMouseOut={() => handleOutPayload()}
         >
-          <Operation 
-            category={category} 
-            error={error}
-            payload={payload}
-            setPayload={setPayload}
+          <Button 
+            onClick={() => handleOnPayload()}
+            type='default' 
+            shape='circle'
+            icon={<PlusOutlined />} 
           />
-        </Modal>
 
-        {/* {
-          togglePayload
-            ? (
-              <Space className={styles.input}>
-                <Input 
-                  value={payload} 
-                  onChange={(event) => setPayload(event.target.value)} 
-                  style={{ width: '100px' }}
+          <Modal 
+            title='Operation' 
+            onSubmit={addPayload} 
+            onQuit={removePayload}
+            isOpen={onPayload}
+          >
+            <Operation 
+              category={category} 
+              error={error}
+              payload={payload}
+              setPayload={setPayload}
+            />
+          </Modal>
+
+          {
+            togglePayload
+              ? (
+                <RapidOperation
+                  error={error}
+                  payload={payload}
+                  setPayload={setPayload}
+                  onSubmit={addPayload} 
+                  onQuit={removePayload}
                 />
-                { error
-                  ? <p className={styles.error}>{error}</p>
-                  : null
-                }
-                <Button 
-                  onClick={() => addPayload()}
-                  type='default' 
-                  shape='circle'
-                  icon={<CheckOutlined />} 
-                />
-                <Button 
-                  onClick={() => removePayload()}
-                  type='default' 
-                  shape='circle'
-                  icon={<CloseOutlined />} 
-                />
-              </Space>
-            )
-          : null
-        } */}
+              )
+            : null
+          }
+        </Space>
       </Space>
     </div>
   )
