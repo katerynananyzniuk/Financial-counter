@@ -8,14 +8,13 @@ interface ModalProps {
   title: string,
   children: React.ReactNode,
   onSubmit: Function,
-  onQuit: Function,
-  isOpen: boolean
+  onQuit: Function
 }
 
-const Modal = ({title, children, onSubmit, onQuit, isOpen}: ModalProps) => {
+const Modal = ({title, children, onSubmit, onQuit}: ModalProps) => {
   return (
     <>
-      { isOpen && (
+      { true && (
         <div className={styles.modal}>
           <div className={styles.modalBody}>
             <h2>{title}</h2>

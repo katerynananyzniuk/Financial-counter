@@ -1,10 +1,8 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import styles from '../Category/Category.module.scss'
 import {ICategory} from '../../types'
-import {Modal} from '../UI/Modal/Modal'
-import {Operation} from '../Operation/Operation'
 import {RapidOperation} from '../RapidOperation/RapidOperation'
 
 interface CategoryProps {
@@ -14,42 +12,31 @@ interface CategoryProps {
 
 function Category({category, addSum}: CategoryProps) {
   const [togglePayload, setTogglePayload] = useState(false)
-  const [onPayload, setOnPayload] = useState(false)
   const [payload, setPayload] = useState('')
   const [error, setError] = useState('')
+  const inputRef = useRef<HTMLElement | null>(null)
 
-  function handleOverPayload() {
-    setTogglePayload(true)
-  }
-
-  function handleOutPayload() {
-    setTogglePayload(false)
-  }
-
-  function handleOnPayload() {
-    setOnPayload(prev => !prev)
+  function handlePayload() {
+    setTogglePayload(prev => !prev)
   }
 
   function addPayload() {
-    setOnPayload(true)
     if (payload.trim()) {
       if (+payload) {
         setError('')
         addSum(category.id, payload)
         setPayload('')
-        setOnPayload(prev => !prev)
         return setTogglePayload(prev => !prev)
       }
       else {
-        setError('Should contain only numbers or number with "."')
+        //TODO: improve the error validation
+        setError('Should contain only numbers or number in format "00.00"')
         setPayload('')
-        setOnPayload(true)
         setTogglePayload(false)
       }
     }
     else {
       setError('')
-      setOnPayload(false)
     }
     setTogglePayload(prev => !prev)
   }
@@ -57,9 +44,9 @@ function Category({category, addSum}: CategoryProps) {
   function removePayload() {
     setError('')
     setPayload('')
-    setOnPayload(false)
     setTogglePayload(prev => !prev)
   }
+
 
   return (
     <div className={styles.categories}>
@@ -67,30 +54,13 @@ function Category({category, addSum}: CategoryProps) {
         <p>{category.total}</p>
         <h3>{`Category ${category.title} | ${category.name}`}</h3>
         
-        <Space
-          onMouseOver={() => handleOverPayload()}
-          onMouseOut={() => handleOutPayload()}
-        >
+        <Space>
           <Button 
-            onClick={() => handleOnPayload()}
+            onClick={() => handlePayload()}
             type='default' 
             shape='circle'
             icon={<PlusOutlined />} 
           />
-
-          <Modal 
-            title='Operation' 
-            onSubmit={addPayload} 
-            onQuit={removePayload}
-            isOpen={onPayload}
-          >
-            <Operation 
-              category={category} 
-              error={error}
-              payload={payload}
-              setPayload={setPayload}
-            />
-          </Modal>
 
           {
             togglePayload
@@ -101,9 +71,10 @@ function Category({category, addSum}: CategoryProps) {
                   setPayload={setPayload}
                   onSubmit={addPayload} 
                   onQuit={removePayload}
+                  inputRef={inputRef}
                 />
               )
-            : null
+              : null
           }
         </Space>
       </Space>
