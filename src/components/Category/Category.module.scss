@@ -1,4 +1,25 @@
 .categories {
+  width: 100%;
+}
+.category {
+  display: grid;
+  grid-template-columns: 30% 10% 20% 40%;
+  justify-items: center;
+  align-items: center;
+}
+
+.categoryTitle {
   display: flex;
-  flex-direction: column;
+  justify-content: end;
+}
+
+.total {
+  display: flex;
+  justify-self: end;
+  margin-right: 1rem;
+}
+
+.addBtn {
+  justify-self: start;
+  margin-left: 1rem;
 }

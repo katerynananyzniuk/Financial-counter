@@ -12,11 +12,17 @@ const initialValue = [
 function Categories() {
   const [categories, setCategories] = useState<ICategory[]>(initialValue) // {id, name, title}
 
-  function onChangeCategoryTotal(categoryId: number, payload: number) {
+  function onChangeCategoryTotal(categoryId: number, payload: number=0) {
     const category = categories.find(item => item.id === categoryId)
     if (category) {
       const changedCategory: ICategory = Object.assign(category)
-      changedCategory.total += +payload
+
+      if (payload) {
+        changedCategory.total += +payload
+      }
+      else {
+        changedCategory.total = 0
+      }
       console.log('changedCategory', changedCategory)
       
       setCategories([
@@ -33,7 +39,7 @@ function Categories() {
           <Category 
             key={item.id} 
             category={item} 
-            addSum={onChangeCategoryTotal}
+            onChangeTotal={onChangeCategoryTotal}
           />
         )
       })}

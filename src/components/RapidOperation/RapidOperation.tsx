@@ -1,9 +1,11 @@
 import styles from '../RapidOperation/RapidOperation.module.scss'
-import { Button, Input, Space } from 'antd'
-import { CheckOutlined, CloseOutlined, InfoOutlined } from '@ant-design/icons'
-import React, {useState, useRef} from 'react'
+import {Button, Input, Space} from 'antd'
+import {CheckOutlined, CloseOutlined, InfoOutlined} from '@ant-design/icons'
+import {useState, useRef} from 'react'
 import {Modal} from '../UI/Modal/Modal'
 import {Operation} from '../Operation/Operation'
+import {ICategory} from '../../types'
+import { MutableRefObject } from "react"
 
 interface RapidOperationProps {
   error: string,
@@ -11,18 +13,22 @@ interface RapidOperationProps {
   setPayload: Function,
   onSubmit: Function,
   onQuit: Function,
-  inputRef?: any
+  category: ICategory
 }
 
-const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, inputRef}: RapidOperationProps) => {
+const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, category}: RapidOperationProps) => {
+  const [modalOpen, setModalOpen] = useState(false)
+  // const inputRef  = useRef<HTMLInputElement | null>(null)
 
-  function handleFocus() {
-    return inputRef.current ? inputRef.current.focus() : null
-  }
+  // function handleFocus() {
+  //   const {current} = inputRef
+  //   return current ? current.focus() : null
+  // }
 
-  function handleBlur() {
-    return inputRef.current ? inputRef.current.blur() : null
-  }
+  // function handleBlur() {
+  //   const {current} = inputRef
+  //   return current ? current.blur() : null
+  // }
 
   function handleSubmit(e: any) {
     e.preventDefault()
@@ -36,15 +42,16 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, inputRef}
       <Space>
 
         <Input 
-          ref={inputRef}
+          // ref={inputRef}
           value={payload} 
           onChange={(e) => setPayload(e.target.value)} 
-          onMouseOver={() => handleFocus()} 
-          onMouseOut={() => handleBlur()}
+          // onMouseOver={() => handleFocus()} 
+          // onMouseOut={() => handleBlur()}
           style={{ width: '100px' }}
         />
+
         <Button 
-          // onClick={() => handleOnPayload()}
+          onClick={() => setModalOpen(!modalOpen)}
           type='default' 
           shape='circle'
           icon={<InfoOutlined />} 
@@ -67,18 +74,25 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, inputRef}
           : null
         }
 
-        {/* <Modal 
-          title='Operation' 
-          onSubmit={addPayload} 
-          onQuit={removePayload}
-          >
-          <Operation 
-            category={category} 
-            error={error}
-            payload={payload}
-            setPayload={setPayload}
-          />
-        </Modal> */}
+        {
+          modalOpen
+            ? (
+              <Modal 
+                title='Operation' 
+                onSubmit={() => onSubmit()} 
+                onQuit={() => onQuit()}
+                >
+                <Operation 
+                  category={category} 
+                  error={error}
+                  payload={payload}
+                  setPayload={setPayload}
+                />
+              </Modal>
+            )
+            : null
+        }
+        
         
       </Space>
     </form>
