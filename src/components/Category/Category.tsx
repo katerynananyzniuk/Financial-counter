@@ -54,10 +54,19 @@ function Category({category, onChangeTotal}: CategoryProps) {
     setModalOpen(false)
   }
 
+  function checkFormat(sum: number) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'Eur',
+      minimumFractionDigits: 0
+    });
+    return formatter.format(sum)
+  }
+
   return (
     <div className={styles.categories}>
       <div className={styles.category}>
-        <p className={styles.total}>{category.total}</p>
+        <p className={styles.total}>{checkFormat(category.total)}</p>
 
         <Tooltip title='remove total'>
           <Button 
@@ -68,7 +77,10 @@ function Category({category, onChangeTotal}: CategoryProps) {
           />
         </Tooltip>
 
-        <h3 className={styles.categoryTitle}>{`Category ${category.title} | ${category.name}`}</h3>
+        <h3 className={styles.categoryTitle}>Category {category.title}
+          <span>&nbsp;|&nbsp;</span>
+          <span className={styles.categoryName}>{category.name}</span>
+        </h3>
         
         <Space
           className={styles.addBtn}
@@ -90,7 +102,7 @@ function Category({category, onChangeTotal}: CategoryProps) {
                   payload={payload}
                   setPayload={setPayload}
                   onSubmit={addPayload} 
-                  onQuit={removePayload}
+                  onClose={removePayload}
                   category={category}
                 />
               )
@@ -103,7 +115,7 @@ function Category({category, onChangeTotal}: CategoryProps) {
                 <Modal 
                   title='Remove Total' 
                   onSubmit={() => removeTotal()} 
-                  onQuit={() => setModalOpen(false)}
+                  onClose={() => setModalOpen(false)}
                 >
                   <TotalRemove total={category.total}/>
                 </Modal>

@@ -12,7 +12,7 @@ interface AppLayoutProps {
 
 const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
   return (
-    <Layout>
+    <Layout className={styles.layout}>
       <Header>
         <Paragraph className={styles.header}>Financial counter</Paragraph>
       </Header>

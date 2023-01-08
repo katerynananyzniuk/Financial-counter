@@ -18,7 +18,6 @@ const Operation = ({category, error, payload, setPayload}: OperationProps) => {
         style={{ width: '100px' }}
         value={payload}
         onChange={(event) => setPayload(event.target.value)}
-        className={styles.operation}
       />
       { error
         ? <p className={styles.error}>{error}</p>

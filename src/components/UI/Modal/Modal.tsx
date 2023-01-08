@@ -6,10 +6,10 @@ interface ModalProps {
   title: string,
   children: React.ReactNode,
   onSubmit: Function,
-  onQuit: Function
+  onClose: Function
 }
 
-const Modal = ({title, children, onSubmit, onQuit}: ModalProps) => {
+const Modal = ({title, children, onSubmit, onClose}: ModalProps) => {
   return (
     <>
       <div className={styles.modal}>
@@ -26,7 +26,7 @@ const Modal = ({title, children, onSubmit, onQuit}: ModalProps) => {
               icon={<CheckOutlined />} 
             />
             <Button 
-              onClick={() => onQuit()}
+              onClick={() => onClose()}
               type='default' 
               shape='circle'
               icon={<CloseOutlined />} 

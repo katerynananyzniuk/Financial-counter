@@ -12,11 +12,11 @@ interface RapidOperationProps {
   payload: string,
   setPayload: Function,
   onSubmit: Function,
-  onQuit: Function,
+  onClose: Function,
   category: ICategory
 }
 
-const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, category}: RapidOperationProps) => {
+const RapidOperation = ({error, payload, setPayload, onSubmit, onClose, category}: RapidOperationProps) => {
   const [modalOpen, setModalOpen] = useState(false)
   // const inputRef  = useRef<HTMLInputElement | null>(null)
 
@@ -63,7 +63,7 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, category}
           icon={<CheckOutlined />} 
         />
         <Button 
-          onClick={() => onQuit()}
+          onClick={() => onClose()}
           type='default' 
           shape='circle'
           icon={<CloseOutlined />} 
@@ -80,7 +80,7 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onQuit, category}
               <Modal 
                 title='Operation' 
                 onSubmit={() => onSubmit()} 
-                onQuit={() => onQuit()}
+                onClose={() => onClose()}
                 >
                 <Operation 
                   category={category} 

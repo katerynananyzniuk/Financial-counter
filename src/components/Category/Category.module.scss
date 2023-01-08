@@ -13,6 +13,10 @@
   justify-content: end;
 }
 
+.categoryName::first-letter {
+  text-transform: uppercase;
+}
+
 .total {
   display: flex;
   justify-self: end;

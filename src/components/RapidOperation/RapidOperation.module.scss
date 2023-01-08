@@ -1,6 +1,13 @@
+.form {
+  position: relative;
+}
+
 .error {
   color: red;
   z-index: 100;
   margin: 0;
   width: max-content;
+  position: absolute;
+  left: 0;
+  top: 50px;
 }
