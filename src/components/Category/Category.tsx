@@ -64,68 +64,58 @@ function Category({category, onChangeTotal}: CategoryProps) {
   }
 
   return (
-    <div className={styles.categories}>
-      <div className={styles.category}>
-        <p className={styles.total}>{checkFormat(category.total)}</p>
+    <>
+      <p className={styles.total}>{checkFormat(category.total)}</p>
 
-        <Tooltip title='remove total'>
+      <Tooltip title='remove total'>
+        <Button 
+          onClick={() => setModalOpen(!modalOpen)}
+          type='default' 
+          shape='circle'
+          icon={<RedoOutlined />}
+        />
+      </Tooltip>
+
+      <h3 className={styles.categoryTitle}>Category {category.title}
+        <span>&nbsp;|&nbsp;</span>
+        <span className={styles.categoryName}>{category.name}</span>
+      </h3>
+      
+      <Space className={styles.addBtn}>
+        <Tooltip title='add sum'>
           <Button 
-            onClick={() => setModalOpen(!modalOpen)}
+            onClick={() => handlePayload()}
             type='default' 
             shape='circle'
-            icon={<RedoOutlined />}
+            icon={<PlusOutlined />} 
           />
         </Tooltip>
 
-        <h3 className={styles.categoryTitle}>Category {category.title}
-          <span>&nbsp;|&nbsp;</span>
-          <span className={styles.categoryName}>{category.name}</span>
-        </h3>
-        
-        <Space
-          className={styles.addBtn}
-        >
-          <Tooltip title='add sum'>
-            <Button 
-              onClick={() => handlePayload()}
-              type='default' 
-              shape='circle'
-              icon={<PlusOutlined />} 
-            />
-          </Tooltip>
+        { togglePayload
+          ? (<RapidOperation
+              error={error}
+              payload={payload}
+              setPayload={setPayload}
+              onSubmit={addPayload} 
+              onClose={removePayload}
+              category={category}
+            />)
+          : null
+        }
 
-          {
-            togglePayload
-              ? (
-                <RapidOperation
-                  error={error}
-                  payload={payload}
-                  setPayload={setPayload}
-                  onSubmit={addPayload} 
-                  onClose={removePayload}
-                  category={category}
-                />
-              )
-              : null
-          }
+        { modalOpen
+          ? (<Modal 
+              title='Remove Total' 
+              onSubmit={() => removeTotal()} 
+              onClose={() => setModalOpen(false)}
+            >
+              <TotalRemove total={category.total}/>
+            </Modal>)
+          : null
+        }
 
-          {
-            modalOpen
-              ? (
-                <Modal 
-                  title='Remove Total' 
-                  onSubmit={() => removeTotal()} 
-                  onClose={() => setModalOpen(false)}
-                >
-                  <TotalRemove total={category.total}/>
-                </Modal>
-              )
-              : null
-          }
-
-        </Space>
-      </div>
-    </div>
+      </Space>
+    </>      
   )
 }
 

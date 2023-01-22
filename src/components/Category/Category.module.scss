@@ -1,20 +1,10 @@
-.categories {
-  width: 100%;
-}
-.category {
-  display: grid;
-  grid-template-columns: 30% 10% 20% 40%;
-  justify-items: center;
-  align-items: center;
-}
-
 .categoryTitle {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
-.categoryName::first-letter {
-  text-transform: uppercase;
+.categoryName{
+  text-transform: capitalize;
 }
 
 .total {

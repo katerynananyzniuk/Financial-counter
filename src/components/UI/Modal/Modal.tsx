@@ -15,8 +15,12 @@ const Modal = ({title, children, onSubmit, onClose}: ModalProps) => {
       <div className={styles.modal}>
         <div className={styles.modalBody}>
           <h2>{title}</h2>
+          
+          <div className={styles.form}>
 
-          {children}
+            {children}
+            
+          </div>
 
           <Space className={styles.btns}>
             <Button 

@@ -1,10 +1,13 @@
-import { Categories } from './components/Categories/Categories';
+import {Categories} from './components/Categories/Categories'
 import AppLayout from './hoc/AppLayout'
+import Table from './components/UI/Table/Table'
 
 function App() {
   return (
     <AppLayout>
-      <Categories />
+      <Table>
+        <Categories />
+      </Table>
     </AppLayout>
   );
 }

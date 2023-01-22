@@ -17,7 +17,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
         <Paragraph className={styles.header}>Financial counter</Paragraph>
       </Header>
       <div className={styles.main}>
+
         {children}
+        
       </div>
       <Footer className={styles.footer}>Ant Design ©2018 Created by Ant UED</Footer>
     </Layout>

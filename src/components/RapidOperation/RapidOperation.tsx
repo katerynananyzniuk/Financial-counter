@@ -1,11 +1,10 @@
 import styles from '../RapidOperation/RapidOperation.module.scss'
 import {Button, Input, Space} from 'antd'
 import {CheckOutlined, CloseOutlined, InfoOutlined} from '@ant-design/icons'
-import {useState, useRef} from 'react'
+import {useState} from 'react'
 import {Modal} from '../UI/Modal/Modal'
 import {Operation} from '../Operation/Operation'
 import {ICategory} from '../../types'
-import { MutableRefObject } from "react"
 
 interface RapidOperationProps {
   error: string,
@@ -18,17 +17,6 @@ interface RapidOperationProps {
 
 const RapidOperation = ({error, payload, setPayload, onSubmit, onClose, category}: RapidOperationProps) => {
   const [modalOpen, setModalOpen] = useState(false)
-  // const inputRef  = useRef<HTMLInputElement | null>(null)
-
-  // function handleFocus() {
-  //   const {current} = inputRef
-  //   return current ? current.focus() : null
-  // }
-
-  // function handleBlur() {
-  //   const {current} = inputRef
-  //   return current ? current.blur() : null
-  // }
 
   function handleSubmit(e: any) {
     e.preventDefault()
@@ -38,15 +26,12 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onClose, category
     <form 
       onSubmit={handleSubmit}
       className={styles.form}
-      >
+    >
       <Space>
 
-        <Input 
-          // ref={inputRef}
+        <Input
           value={payload} 
-          onChange={(e) => setPayload(e.target.value)} 
-          // onMouseOver={() => handleFocus()} 
-          // onMouseOut={() => handleBlur()}
+          onChange={(e) => setPayload(e.target.value)}
           style={{ width: '100px' }}
         />
 
@@ -74,25 +59,21 @@ const RapidOperation = ({error, payload, setPayload, onSubmit, onClose, category
           : null
         }
 
-        {
-          modalOpen
-            ? (
-              <Modal 
+        { modalOpen
+            ? (<Modal 
                 title='Operation' 
                 onSubmit={() => onSubmit()} 
                 onClose={() => onClose()}
-                >
+              >
                 <Operation 
                   category={category} 
                   error={error}
                   payload={payload}
                   setPayload={setPayload}
                 />
-              </Modal>
-            )
+              </Modal>)
             : null
         }
-        
         
       </Space>
     </form>
