@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Financial-counter/static/css/main.0454df25.css",
+    "main.js": "/Financial-counter/static/js/main.da94fb2d.js",
+    "index.html": "/Financial-counter/index.html",
+    "main.0454df25.css.map": "/Financial-counter/static/css/main.0454df25.css.map",
+    "main.da94fb2d.js.map": "/Financial-counter/static/js/main.da94fb2d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0454df25.css",
+    "static/js/main.da94fb2d.js"
+  ]
+}
