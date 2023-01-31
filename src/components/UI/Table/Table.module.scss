@@ -3,7 +3,7 @@
   list-style: none;
   width: 100%;
   display: grid;
-  grid-template-columns: 30% 10% 20% 40%;
+  grid-template-columns: 40% 20% 40%;
   justify-items: center;
   align-items: center;
   font-weight: 500;
@@ -18,18 +18,18 @@
 
   .total {
     display: flex;
-    justify-self: end;
-    margin-right: 1rem;
-  }
-  
-  .addBtn {
-    display: flex;
     justify-self: start;
     margin-left: 1rem;
   }
   
+  .addBtn {
+    display: flex;
+    justify-self: end;
+    margin-right: 1rem;
+  }
+  
   .removeBtn {
-    text-align: center;
+    justify-self: start;
   }
 }
 

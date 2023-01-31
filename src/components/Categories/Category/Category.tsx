@@ -65,31 +65,7 @@ function Category({category, onChangeTotal}: CategoryProps) {
 
   return (
     <>
-      <TotalOperations category={category} operations={operations}/>
-
-      <Tooltip title='remove total'>
-        <Button 
-          onClick={() => setModalOpen(!modalOpen)}
-          type='default' 
-          shape='circle'
-          icon={<RedoOutlined />}
-        />
-      </Tooltip>
-
-      <h3 className={styles.categoryTitle}>Category {category.title}
-        <span>&nbsp;|&nbsp;</span>
-        <span className={styles.categoryName}>{category.name}</span>
-      </h3>
-      
       <Space className={styles.addBtn}>
-        <Tooltip title='add sum'>
-          <Button 
-            onClick={() => handlePayload()}
-            type='default' 
-            shape='circle'
-            icon={<PlusOutlined />} 
-          />
-        </Tooltip>
 
         { togglePayload
           ? (<RapidOperation
@@ -102,7 +78,14 @@ function Category({category, onChangeTotal}: CategoryProps) {
               onClose={removePayload}
               category={category}
             />)
-          : null
+          : (<Tooltip title='add sum'>
+              <Button
+                onClick={() => handlePayload()}
+                type='default' 
+                shape='circle'
+                icon={<PlusOutlined />} 
+              />
+            </Tooltip>)
         }
 
         { modalOpen
@@ -117,6 +100,23 @@ function Category({category, onChangeTotal}: CategoryProps) {
         }
 
       </Space>
+
+      <h3 className={styles.categoryTitle}>Category {category.title}
+        <span>&nbsp;|&nbsp;</span>
+        <span className={styles.categoryName}>{category.name}</span>
+      </h3>
+     
+      <TotalOperations category={category} operations={operations}/>
+
+      <Tooltip title='remove total'>
+        <Button 
+          className={styles.removeBtn}
+          onClick={() => setModalOpen(!modalOpen)}
+          type='default' 
+          shape='circle'
+          icon={<RedoOutlined />}
+        />
+      </Tooltip>
     </>      
   )
 }

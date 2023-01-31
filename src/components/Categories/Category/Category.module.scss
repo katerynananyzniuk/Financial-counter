@@ -8,6 +8,11 @@
 }
 
 .addBtn {
-  justify-self: start;
+  justify-self: flex-end;
+  margin-right: 1rem;
+}
+
+.removeBtn {
+  justify-self: flex-start;
   margin-left: 1rem;
 }

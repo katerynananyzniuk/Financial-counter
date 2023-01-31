@@ -1,10 +1,13 @@
 .total {
   display: flex;
-  justify-self: end;
+  justify-self: start;
   border: none;
   background-color: transparent;
   cursor: pointer;
   padding: 1rem;
+  font-size: 20px;
+  font-style: italic;
+  color: #00474f;
 }
 
 .operations {
