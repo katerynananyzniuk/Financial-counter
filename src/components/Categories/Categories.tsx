@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {ICategory} from '../../types'
 import {CategoryCreation} from './CategoryCreation'
 import {CategoriesList} from './CategoriesList'
+import {TotalSum} from '../TotalSum/TotalSum'
 
 const initialValue = [
   { id: 1, name: 'home', title: 'H', total: 0 },
@@ -61,6 +62,8 @@ function Categories() {
       />
       
       <CategoryCreation onCreate={addCategory} />
+
+      <TotalSum categories={categories}/>
     </>
   )
 }

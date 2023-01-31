@@ -4,7 +4,7 @@ import styles from './AppLayout.module.scss'
 import { Layout, Typography } from 'antd'
 
 const { Paragraph } = Typography
-const { Header, Footer } = Layout
+const { Header } = Layout
 
 interface AppLayoutProps {
   children?: ReactNode;
@@ -12,7 +12,7 @@ interface AppLayoutProps {
 
 const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
   return (
-    <Layout className={styles.layout}>
+    <Layout>
       <Header>
         <Paragraph className={styles.header}>Financial counter</Paragraph>
       </Header>
@@ -21,7 +21,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
         {children}
         
       </div>
-      <Footer className={styles.footer}>Ant Design ©2018 Created by Ant UED</Footer>
+      <footer className={styles.footer}>Ant Design ©2018 Created by Ant UED</footer>
     </Layout>
   )
 }

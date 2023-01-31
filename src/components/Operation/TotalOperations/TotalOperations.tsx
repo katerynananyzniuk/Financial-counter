@@ -2,19 +2,11 @@ import { ICategory, IOperation } from '../../../types'
 import styles from './TotalOperations.module.scss'
 import {useState} from 'react'
 import {Modal} from '../../UI/Modal/Modal'
+import {checkFormat} from '../../../utils'
 
 interface TotalOperationsProps {
   category: ICategory,
   operations: IOperation[]
-}
-
-function checkFormat(sum: number) {
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'Eur',
-    minimumFractionDigits: 0
-  });
-  return formatter.format(sum)
 }
 
 function TotalOperations({category, operations}: TotalOperationsProps) {
