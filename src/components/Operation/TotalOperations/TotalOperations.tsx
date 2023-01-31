@@ -3,6 +3,7 @@ import styles from './TotalOperations.module.scss'
 import {useState} from 'react'
 import {Modal} from '../../UI/Modal/Modal'
 import {checkFormat} from '../../../utils'
+import { Button } from 'antd'
 
 interface TotalOperationsProps {
   category: ICategory,
@@ -19,12 +20,12 @@ function TotalOperations({category, operations}: TotalOperationsProps) {
   }
   return (
     <>
-      <button 
+      <Button 
         className={styles.total}
         onClick={() => handleClick()}
       >
         {checkFormat(category.total)}
-      </button>
+      </Button>
 
       {
         modalOpen
