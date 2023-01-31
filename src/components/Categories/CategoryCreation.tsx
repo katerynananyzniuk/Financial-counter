@@ -1,7 +1,7 @@
 import {Button, Tooltip} from 'antd'
 import {PlusOutlined} from '@ant-design/icons'
 import {Modal} from '../UI/Modal/Modal'
-import {NewCategory} from '../NewCategory/NewCategory'
+import {NewCategory} from './NewCategory/NewCategory'
 import {useState} from 'react'
 
 interface CategoryCreationProps{

@@ -4,3 +4,9 @@ export interface ICategory {
   title: string,
   total: number,
 }
+
+export interface IOperation {
+  id: number,
+  payload: number,
+  comment: string
+}

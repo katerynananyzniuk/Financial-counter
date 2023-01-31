@@ -2,10 +2,12 @@ import {useState} from 'react'
 import {Button, Tooltip, Space} from 'antd'
 import {PlusOutlined, RedoOutlined} from '@ant-design/icons'
 import styles from '../Category/Category.module.scss'
-import {ICategory} from '../../types'
-import {RapidOperation} from '../RapidOperation/RapidOperation'
-import {Modal} from '../UI/Modal/Modal'
-import {TotalRemove} from '../TotalRemove/TotalRemove'
+import {ICategory} from '../../../types'
+import {RapidOperation} from '../../Operation/RapidOperation/RapidOperation'
+import {Modal} from '../../UI/Modal/Modal'
+import {TotalRemove} from '../../TotalRemove/TotalRemove'
+import {TotalOperations} from '../../Operation/TotalOperations/TotalOperations'
+import {IOperation} from '../../../types'
 
 interface CategoryProps {
   category: ICategory,
@@ -15,6 +17,8 @@ interface CategoryProps {
 function Category({category, onChangeTotal}: CategoryProps) {
   const [togglePayload, setTogglePayload] = useState(false)
   const [payload, setPayload] = useState('')
+  const [comment, setComment] = useState('')
+  const [operations, setOperations] = useState<IOperation[]>([])
   const [error, setError] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -27,6 +31,10 @@ function Category({category, onChangeTotal}: CategoryProps) {
       if (+payload) {
         setError('')
         onChangeTotal(category.id, payload)
+        const allOperations = operations.concat()
+        const newOperation: IOperation = { id: allOperations.length+1, payload: +payload, comment: comment}
+        setOperations([newOperation, ...allOperations])
+        setComment('')
         setPayload('')
         return setTogglePayload(prev => !prev)
       }
@@ -51,21 +59,13 @@ function Category({category, onChangeTotal}: CategoryProps) {
 
   function removeTotal() {
     onChangeTotal(category.id)
+    setOperations([])
     setModalOpen(false)
-  }
-
-  function checkFormat(sum: number) {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'Eur',
-      minimumFractionDigits: 0
-    });
-    return formatter.format(sum)
   }
 
   return (
     <>
-      <p className={styles.total}>{checkFormat(category.total)}</p>
+      <TotalOperations category={category} operations={operations}/>
 
       <Tooltip title='remove total'>
         <Button 
@@ -96,6 +96,8 @@ function Category({category, onChangeTotal}: CategoryProps) {
               error={error}
               payload={payload}
               setPayload={setPayload}
+              comment={comment}
+              setComment={setComment}
               onSubmit={addPayload} 
               onClose={removePayload}
               category={category}

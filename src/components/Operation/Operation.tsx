@@ -6,10 +6,12 @@ interface OperationProps {
   category: ICategory,
   error: string,
   payload: string,
-  setPayload: Function
+  setPayload: Function,
+  comment: string,
+  setComment: Function
 }
 
-const Operation = ({category, error, payload, setPayload}: OperationProps) => {
+const Operation = ({category, error, payload, setPayload, comment, setComment}: OperationProps) => {
   return (
     <div className={styles.body}>
       <label htmlFor='operation'>Sum:&nbsp;</label>
@@ -33,6 +35,8 @@ const Operation = ({category, error, payload, setPayload}: OperationProps) => {
         showCount 
         maxLength={20}
         className={styles.comment}
+        value={comment}
+        onChange={(event) => setComment(event.target.value)}
       />
     </div>
   )

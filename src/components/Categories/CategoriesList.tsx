@@ -1,6 +1,6 @@
 import {ICategory} from '../../types'
 import TableItem from '../UI/Table/TableItem/TableItem'
-import {Category} from '../Category/Category'
+import {Category} from './Category/Category'
 
 interface CategoriesListProps{
   categories: ICategory[],
@@ -10,7 +10,7 @@ interface CategoriesListProps{
 const CategoriesList = ({categories, onChangeCategoryTotal}: CategoriesListProps) => {
   return (
     <>
-      {categories
+      { categories
         .sort((a, b) => a.id - b.id)
         .map(item => {
           return (
