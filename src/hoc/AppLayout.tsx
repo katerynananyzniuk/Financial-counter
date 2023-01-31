@@ -1,10 +1,9 @@
 import { ReactNode } from 'react'
 import styles from './AppLayout.module.scss'
 
-import { Layout, Typography } from 'antd'
+import { Button, Layout, Typography } from 'antd'
 
 const { Paragraph } = Typography
-const { Header } = Layout
 
 interface AppLayoutProps {
   children?: ReactNode;
@@ -13,15 +12,17 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
   return (
     <Layout>
-      <Header>
-        <Paragraph className={styles.header}>Financial counter</Paragraph>
-      </Header>
+      <header className={styles.header}>
+        <Button >Expenses</Button>
+        <Paragraph className={styles.headerTitle}>Financial counter</Paragraph>
+        <Button className={styles.btn} disabled>Income</Button>
+      </header>
       <div className={styles.main}>
 
         {children}
         
       </div>
-      <footer className={styles.footer}>Ant Design ©2018 Created by Ant UED</footer>
+      <footer className={styles.footer}>Assistant to calculate expenses for a monthly period</footer>
     </Layout>
   )
 }

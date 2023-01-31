@@ -1,12 +1,23 @@
 .header {
-  color: #fff;
-  text-transform: uppercase;
+  background-color: #001529;
   display: flex;
-  text-align: center;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  font-size: 16px;
+  padding: 1rem;
+  gap: 3rem;
+  
+  & .headerTitle {
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  & .btn {
+    color: #fff;
+  }
 }
 
 .main {
