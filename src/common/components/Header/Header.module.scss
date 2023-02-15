@@ -1,0 +1,31 @@
+.header {
+  background-color: #001529;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 3rem;
+  
+  & .title {
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  & .btnActive {
+    text-transform: capitalize;
+    color: #001529;
+    background-color: #fff;
+  }
+
+  & .btnPassive {
+    text-transform: capitalize;
+    color: #fff;
+    background-color: #001529;
+  }
+}

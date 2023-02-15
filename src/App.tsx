@@ -1,14 +1,17 @@
-import {Categories} from './components/Categories/Categories'
-import AppLayout from './hoc/AppLayout'
-import Table from './components/UI/Table/Table'
+import {Categories} from 'categories'
+import {AppLayout} from 'common/components/AppLayout'
+import {Table} from 'common/components/Table'
+import {BudgetProvider} from 'common/components/Budget/BudgetContext';
 
 function App() {
   return (
-    <AppLayout>
-      <Table>
-        <Categories />
-      </Table>
-    </AppLayout>
+    <BudgetProvider>
+      <AppLayout>
+        <Table>
+          <Categories />
+        </Table>
+      </AppLayout>
+    </BudgetProvider>
   );
 }
 

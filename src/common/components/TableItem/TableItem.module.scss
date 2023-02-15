@@ -1,0 +1,10 @@
+.itemContainer {
+  width: 100%;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  justify-items: center;
+  align-items: center;
+}
