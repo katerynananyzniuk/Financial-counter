@@ -1,7 +1,7 @@
 import styles from './Header.module.scss'
 import {Button} from 'antd'
 import {budgetParameters} from 'common/core/constants'
-import {useBudget} from 'common/components/Budget/BudgetContext'
+import {useBudget} from 'common/components/Budget/hooks'
 
 const Header = () => {
   const budget = useBudget()
@@ -9,8 +9,8 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Button 
-        onClick={() => budget.expences()}
-        className={ budget.activeParameter === budgetParameters[0] ? styles.btnActive : styles.btnPassive }
+        onClick={() => budget.expenses()}
+        className={ budget.active === budgetParameters[0] ? styles.btnActive : styles.btnPassive }
       >
         { budgetParameters[0] }
       </Button>
@@ -19,7 +19,7 @@ const Header = () => {
 
       <Button 
         onClick={() => budget.income()}
-        className={ budget.activeParameter === budgetParameters[1] ? styles.btnActive : styles.btnPassive }
+        className={ budget.active === budgetParameters[1] ? styles.btnActive : styles.btnPassive }
       >
         { budgetParameters[1] }
       </Button>

@@ -1,4 +1,4 @@
-import {useBudget} from 'common/components/Budget/BudgetContext'
+import {useBudget} from 'common/components/Budget/hooks'
 import styles from './Footer.module.scss'
 
 const Footer = () => {
@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      Assistant to calculate {budget.activeParameter.length ? budget.activeParameter : 'finance'} for a monthly period
+      <div className={styles.title}>Assistant to calculate {budget.active.length ? budget.active : 'finance'} for a monthly period</div>
     </footer>
   )
 }

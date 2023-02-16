@@ -1,7 +1,7 @@
 import {Categories} from 'categories'
 import {AppLayout} from 'common/components/AppLayout'
 import {Table} from 'common/components/Table'
-import {BudgetProvider} from 'common/components/Budget/BudgetContext';
+import {BudgetProvider} from 'common/components/Budget/BudgetProvider'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         </Table>
       </AppLayout>
     </BudgetProvider>
-  );
+  )
 }
 
-export default App;
+export default App

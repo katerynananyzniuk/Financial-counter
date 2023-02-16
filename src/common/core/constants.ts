@@ -1,1 +1,1 @@
-export const budgetParameters = ['expences', 'income']
+export const budgetParameters = ['expenses', 'income']

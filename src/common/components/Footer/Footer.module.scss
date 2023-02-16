@@ -1,16 +1,22 @@
 .footer {
   background-color: #626F7B;
-  color: #fff;
   position: fixed;
   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   width: 100%;
   padding: 0.5rem 0;
-  font-size: 14px;
   height: 58px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  
+  & .title {
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
 }

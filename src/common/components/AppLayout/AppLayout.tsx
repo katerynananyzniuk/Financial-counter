@@ -3,11 +3,7 @@ import {Layout} from 'antd'
 import {Header} from 'common/components/Header'
 import {Footer} from 'common/components/Footer'
 
-interface AppLayoutProps {
-  children?: React.ReactNode
-}
-
-const AppLayout: React.FC<AppLayoutProps> = ({children}) => {
+const AppLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <Layout>
       <Header />

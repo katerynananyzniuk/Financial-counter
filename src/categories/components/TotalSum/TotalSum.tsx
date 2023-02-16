@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import {ICategory} from '../../../common/types'
 import {checkFormat} from '../../../common/utils'
 import styles from './TotalSum.module.scss'
-import {useBudget} from 'common/components/Budget/BudgetContext'
+import {useBudget} from 'common/components/Budget/hooks'
 
 interface TotalSumProps {
   categories: ICategory[]
@@ -25,7 +25,7 @@ function TotalSum({categories}: TotalSumProps) {
   return (
     <h3 className={styles.totalSum}>Total sum:&nbsp;
       <span className={styles.sum}>{checkFormat(totalSum)}</span>
-      <span>{budget.activeParameter}</span>
+      <span>{budget.active}</span>
     </h3>
   )
 }
