@@ -3,7 +3,7 @@ import {Button} from 'antd'
 import {budgetParameters} from 'common/core/constants'
 import {useBudget} from 'common/components/Budget/hooks'
 
-const Header = () => {
+export const Header = () => {
   const budget = useBudget()
 
   return (
@@ -26,4 +26,3 @@ const Header = () => {
     </header>
   )
 }
-export {Header}

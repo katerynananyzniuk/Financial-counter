@@ -3,8 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1rem;
-  gap: 3rem;
+  min-height: $header-height;
   
   & .title {
     font-size: 16px;
@@ -15,6 +16,7 @@
     margin: 0;
     letter-spacing: 1px;
     font-weight: 400;
+    margin: 1rem 3rem;
   }
 
   & .btnActive {

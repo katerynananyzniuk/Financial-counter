@@ -1,3 +1,5 @@
+@import 'common/core/variables';
+
 .main {
-  padding-bottom: 58px;
+  padding-bottom: $footer-height;
 }

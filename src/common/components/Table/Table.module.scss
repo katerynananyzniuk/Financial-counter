@@ -1,45 +1,87 @@
-.tableHeader {
-  padding: 10px 0;
-  list-style: none;
+// .tableHeader {
+//   padding: 10px 0;
+//   list-style: none;
+//   width: 100%;
+//   display: grid;
+//   grid-template-columns: 40% 20% 40%;
+//   justify-items: center;
+//   align-items: center;
+//   font-weight: 400;
+//   font-size: 14px;
+//   background-color: rgba(0, 21, 41, 0.6);
+//   color: #fff;
+//   margin: 0;
+//   letter-spacing: 1px;
+  
+//   & li:hover {
+//     color: #001529;
+//   }
+
+//   .total {
+//     display: flex;
+//     justify-self: start;
+//     margin-left: 1rem;
+//   }
+  
+//   .addBtn {
+//     display: flex;
+//     justify-self: end;
+//     margin-right: 1rem;
+//   }
+  
+//   .removeBtn {
+//     justify-self: start;
+//   }
+// }
+
+// .tableBody {
+//   padding: 2rem 0;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   gap: 2rem;
+//   margin: 0;
+// }
+
+.table {
   width: 100%;
-  display: grid;
-  grid-template-columns: 40% 20% 40%;
-  justify-items: center;
+  border-spacing: 0;
+}
+
+.tableHeader {
+  min-height: 3em;
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  font-weight: 400;
-  font-size: 14px;
   background-color: rgba(0, 21, 41, 0.6);
   color: #fff;
   margin: 0;
-  letter-spacing: 1px;
   
-  & li:hover {
-    color: #001529;
+  & .headerCell:first-child {
+    justify-self: flex-end;
   }
 
-  .total {
-    display: flex;
-    justify-self: start;
-    margin-left: 1rem;
+  & .headerCell:last-child {
+    justify-self: flex-start;
   }
   
-  .addBtn {
-    display: flex;
-    justify-self: end;
-    margin-right: 1rem;
-  }
-  
-  .removeBtn {
-    justify-self: start;
+  & .headerCell {
+    padding: 0 1rem;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 }
 
 .tableBody {
   padding: 2rem 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
   margin: 0;
 }

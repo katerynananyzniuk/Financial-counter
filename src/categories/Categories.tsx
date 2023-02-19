@@ -52,10 +52,10 @@ function Categories() {
 
   return (
     <>
-      <CategoriesList 
+      {/* <CategoriesList 
         categories={categories} 
         onChangeCategoryTotal={onChangeCategoryTotal}
-      />
+      /> */}
       
       <CategoryCreation onCreate={addCategory} />
 

@@ -10,3 +10,8 @@ export interface IOperation {
   payload: number,
   comment: string
 }
+
+export interface IColumns {
+  id: number,
+  name: string
+}
